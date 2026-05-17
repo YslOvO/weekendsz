@@ -38,6 +38,23 @@ export const places: Place[] = [
     status: 'active'
   },
   {
+    id: 'shenzhen-bay-mixc',
+    name: '深圳湾万象城',
+    district: '南山',
+    type: 'mall',
+    address: '南山区科苑南路2888号',
+    hours: '10:00-22:30',
+    transit: '地铁2/11号线后海站',
+    summary: '后海核心商场，餐饮、展览和湾区商务客流集中，适合室内轻逛。',
+    cover: '/static/places/shenzhen-bay-mixc.jpg',
+    mapPoint: { x: 38, y: 52 },
+    heat: 90,
+    eventCount: 2,
+    tags: ['商场', '餐饮', '展览'],
+    audiences: ['情侣', '上班族', '亲子'],
+    status: 'active'
+  },
+  {
     id: 'coco-park',
     name: '福田星河COCO Park',
     district: '福田',
@@ -209,7 +226,7 @@ export const places: Place[] = [
   },
   {
     id: 'mixc-luohu',
-    name: '罗湖万象城',
+    name: '深圳万象城',
     district: '罗湖',
     type: 'mall',
     address: '罗湖区宝安南路1881号',
@@ -328,7 +345,7 @@ export const places: Place[] = [
   },
   {
     id: 'upperhills',
-    name: '深业上城',
+    name: '深业上城UpperHills',
     district: '福田',
     type: 'mall',
     address: '福田区皇岗路5001号',
@@ -413,7 +430,7 @@ export const places: Place[] = [
   },
   {
     id: 'qianhai-hop',
-    name: '前海壹方城',
+    name: '深圳前海壹方城',
     district: '宝安',
     type: 'mall',
     address: '宝安区新湖路99号',
@@ -446,6 +463,70 @@ export const events: Event[] = [
     heat: 92,
     tags: ['展览', '盖章', '拍照'],
     sourceUrl: 'https://example.com/mixc-world-art'
+  },
+  {
+    id: 'evt-shenzhen-bay-weekend',
+    placeId: 'shenzhen-bay-mixc',
+    title: '后海生活方式快闪',
+    startsAt: '2026-05-18T10:00:00+08:00',
+    endsAt: '2026-05-26T22:00:00+08:00',
+    location: 'L1 中庭',
+    status: 'upcoming',
+    intro: '集合香氛、咖啡和设计小物的周末快闪，适合饭后顺路逛。',
+    detail: '品牌摊位集中在中庭和连廊区域，晚间客流更高。建议搭配周边餐饮提前取号。',
+    participation: '现场免费参与，部分体验需预约。',
+    fee: '免费入场',
+    heat: 88,
+    tags: ['快闪', '餐饮', '设计'],
+    sourceUrl: 'https://example.com/shenzhen-bay-mixc-pop'
+  },
+  {
+    id: 'evt-mixc-luohu-gallery',
+    placeId: 'mixc-luohu',
+    title: '城市影像小展',
+    startsAt: '2026-05-17T10:00:00+08:00',
+    endsAt: '2026-05-30T22:00:00+08:00',
+    location: 'L3 连廊',
+    status: 'ongoing',
+    intro: '以深圳街景为主题的影像展，适合逛街时短暂停留。',
+    detail: '展区动线较短，适合安排在餐前或电影前。周末下午人流较密集。',
+    participation: '商场公共区域免费参观。',
+    fee: '免费',
+    heat: 82,
+    tags: ['展览', '影像', '室内'],
+    sourceUrl: 'https://example.com/mixc-luohu-gallery'
+  },
+  {
+    id: 'evt-qianhai-family-day',
+    placeId: 'qianhai-hop',
+    title: '亲子运动体验日',
+    startsAt: '2026-05-23T11:00:00+08:00',
+    endsAt: '2026-05-25T20:00:00+08:00',
+    location: '西区中庭',
+    status: 'upcoming',
+    intro: '适合家庭周末参与的轻运动体验，搭配餐饮和儿童零售活动。',
+    detail: '体验项目分时段开放，低龄儿童建议避开晚高峰。现场以商场公告为准。',
+    participation: '部分项目需现场排队。',
+    fee: '免费，部分项目需消费凭证',
+    heat: 86,
+    tags: ['亲子', '运动', '商场'],
+    sourceUrl: 'https://example.com/qianhai-hop-family'
+  },
+  {
+    id: 'evt-upperhills-rooftop',
+    placeId: 'upperhills',
+    title: '屋顶街区周末计划',
+    startsAt: '2026-05-20T15:00:00+08:00',
+    endsAt: '2026-05-26T21:30:00+08:00',
+    location: '小镇广场',
+    status: 'upcoming',
+    intro: '屋顶街区开放轻市集和品牌互动，适合傍晚拍照轻逛。',
+    detail: '建议从莲花一村或冬瓜岭站方向进入，傍晚光线更适合拍照。',
+    participation: '免费开放，摊位消费自理。',
+    fee: '免费入场',
+    heat: 84,
+    tags: ['街区', '快闪', '拍照'],
+    sourceUrl: 'https://example.com/upperhills-rooftop'
   },
   {
     id: 'evt-happy-harbor-sunset',
@@ -541,11 +622,14 @@ export const reviewSignals: ReviewSignal[] = [
 ]
 
 export const sourceAccounts: SourceAccount[] = [
-  { id: 'src-001', name: '深圳万象天地', type: 'wechat', enabled: true, lastFetchedAt: '2026-05-15T09:10:00+08:00' },
-  { id: 'src-002', name: '欢乐港湾', type: 'wechat', enabled: true, lastFetchedAt: '2026-05-16T11:30:00+08:00' },
-  { id: 'src-003', name: '世界之窗', type: 'official_site', url: 'https://example.com/window', enabled: true },
-  { id: 'src-004', name: '大梅沙旅游', type: 'public_page', url: 'https://example.com/dameisha', enabled: true }
+  { id: 'src-001', name: '深圳湾万象城', type: 'wechat', enabled: true, lastFetchedAt: '2026-05-15T09:10:00+08:00' },
+  { id: 'src-002', name: '深圳万象城', type: 'wechat', enabled: true, lastFetchedAt: '2026-05-15T10:20:00+08:00' },
+  { id: 'src-003', name: '深圳万象天地', type: 'wechat', enabled: true, lastFetchedAt: '2026-05-16T11:30:00+08:00' },
+  { id: 'src-004', name: '深圳前海壹方城', type: 'wechat', enabled: true, lastFetchedAt: '2026-05-16T15:05:00+08:00' },
+  { id: 'src-005', name: '深业上城UpperHills', type: 'wechat', enabled: true, lastFetchedAt: '2026-05-17T09:40:00+08:00' }
 ]
+
+export const homeSourcePlaceNames = sourceAccounts.map((source) => source.name)
 
 export const activityDrafts: ActivityDraft[] = [
   {

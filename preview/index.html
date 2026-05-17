@@ -178,7 +178,7 @@
       <header class="topbar">
         <div>
           <h1>WeekendSZ</h1>
-          <div class="subtitle">深圳周末去哪玩 · 静态预览</div>
+          <div class="subtitle">深圳周末去哪玩 · 来源账号覆盖商场静态预览</div>
         </div>
         <button class="button ghost" id="admin">运营台演示</button>
       </header>
@@ -191,12 +191,12 @@
           <div class="card">
             <span class="eyebrow">本周热门</span>
             <div class="event">
-              <div class="event-title">湾区日落音乐市集</div>
-              <div class="muted">欢乐港湾 · 即将开始 · 免费入场</div>
+              <div class="event-title">后海生活方式快闪</div>
+              <div class="muted">深圳湾万象城 · 即将开始 · 免费入场</div>
             </div>
             <div class="event">
-              <div class="event-title">世界之窗夜场奇遇季</div>
-              <div class="muted">世界之窗 · 进行中 · 门票制</div>
+              <div class="event-title">亲子运动体验日</div>
+              <div class="muted">深圳前海壹方城 · 即将开始 · 免费入场</div>
             </div>
           </div>
         </aside>
@@ -205,12 +205,10 @@
     <script>
       const places = [
         { id: 'mixc-world', name: '深圳万象天地', district: '南山', type: '商场', x: 36, y: 47, heat: 96, eventCount: 3, tags: ['逛街', '展览', '拍照'], summary: '潮流品牌、街区展览和周末快闪密度高，适合情侣逛展拍照。' },
-        { id: 'coco-park', name: '福田星河COCO Park', district: '福田', type: '商场', x: 55, y: 51, heat: 91, eventCount: 2, tags: ['夜生活', '市集', '餐饮'], summary: '福田核心夜生活和餐饮集合地，周末市集与品牌活动常驻。' },
-        { id: 'happy-harbor', name: '欢乐港湾', district: '宝安', type: '滨海', x: 27, y: 44, heat: 93, eventCount: 3, tags: ['滨海', '夜景', '亲子'], summary: '滨海公园、摩天轮和夜景组合，适合傍晚散步与亲子出片。' },
-        { id: 'sea-world', name: '蛇口海上世界', district: '南山', type: '景区', x: 34, y: 59, heat: 88, eventCount: 2, tags: ['海边', '艺术', '餐酒馆'], summary: '海边街区、餐酒馆和艺术展览聚集，适合周末城市轻旅行。' },
-        { id: 'window-world', name: '世界之窗', district: '南山', type: '景区', x: 42, y: 47, heat: 90, eventCount: 2, tags: ['景区', '演艺', '亲子'], summary: '夜场演艺、主题节庆和亲子路线成熟，适合半日游。' },
-        { id: 'dameisha', name: '大梅沙海滨公园', district: '盐田', type: '滨海', x: 84, y: 58, heat: 92, eventCount: 2, tags: ['海边', '亲子', '预约'], summary: '深圳经典海边目的地，适合晴天看海、亲子玩沙和轻度徒步。' },
-        { id: 'gankeng', name: '甘坑古镇', district: '龙岗', type: '景区', x: 70, y: 34, heat: 81, eventCount: 2, tags: ['古镇', '夜景', '亲子'], summary: '古风街区、夜景和亲子项目组合，适合拍照和轻游。' }
+        { id: 'shenzhen-bay-mixc', name: '深圳湾万象城', district: '南山', type: '商场', x: 38, y: 52, heat: 90, eventCount: 2, tags: ['商场', '餐饮', '展览'], summary: '后海核心商场，餐饮、展览和湾区商务客流集中，适合室内轻逛。' },
+        { id: 'mixc-luohu', name: '深圳万象城', district: '罗湖', type: '商场', x: 70, y: 50, heat: 83, eventCount: 1, tags: ['商场', '餐饮', '展览'], summary: '成熟高端商圈，适合看展、吃饭和顺路逛罗湖老城。' },
+        { id: 'qianhai-hop', name: '深圳前海壹方城', district: '宝安', type: '商场', x: 25, y: 41, heat: 89, eventCount: 2, tags: ['商场', '亲子', '餐饮'], summary: '宝安核心大体量商场，亲子、餐饮和品牌活动密集。' },
+        { id: 'upperhills', name: '深业上城UpperHills', district: '福田', type: '商场', x: 61, y: 45, heat: 84, eventCount: 2, tags: ['街区', '快闪', '拍照'], summary: '屋顶街区、品牌快闪和餐饮集中，适合拍照和轻逛。' }
       ]
       const map = document.querySelector('#map')
       const spot = document.querySelector('#spot')

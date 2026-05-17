@@ -15,6 +15,12 @@ const audiences = ['all', '情侣', '亲子', '学生', '上班族']
 function patch(value: Partial<SearchFilters>) {
   emit('update:modelValue', { ...props.modelValue, ...value })
 }
+
+function handleKeywordInput(event: InputEvent) {
+  const targetValue = (event.target as HTMLInputElement | null)?.value
+  const detailValue = (event as unknown as { detail?: { value?: string | number } }).detail?.value
+  patch({ keyword: String(targetValue ?? detailValue ?? '') })
+}
 </script>
 
 <template>
@@ -25,7 +31,7 @@ function patch(value: Partial<SearchFilters>) {
         class="search-input"
         placeholder="搜索商场、景区、亲子、免费"
         :value="modelValue.keyword"
-        @input="patch({ keyword: ($event.detail.value || '') })"
+        @input="handleKeywordInput"
       />
     </view>
 

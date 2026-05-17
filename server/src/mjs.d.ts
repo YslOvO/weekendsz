@@ -1,10 +1,7 @@
-declare module './mockData.mjs' {
-  export const places: Array<Record<string, unknown>>
-  export const events: Array<Record<string, unknown>>
-  export const reviewSignals: Array<Record<string, unknown>>
-  export const activityDrafts: Array<Record<string, unknown>>
-}
-
-declare module './sourceParser.mjs' {
+declare module '*.mjs' {
+  export const places: any[]
+  export const events: any[]
+  export const reviewSignals: any[]
+  export const activityDrafts: any[]
   export function parseSourceAccountText(text: string): string[]
 }

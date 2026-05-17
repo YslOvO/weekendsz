@@ -1,4 +1,4 @@
-import { events, places, reviewSignals } from '@/data/weekendsz'
+import { events, homeSourcePlaceNames, places, reviewSignals } from '@/data/weekendsz'
 import type { Event, EventStatus, Place, ReviewSignal, SearchFilters } from '@/types/domain'
 
 export const defaultFilters: SearchFilters = {
@@ -21,14 +21,23 @@ export function getEventsByPlace(placeId: string): Event[] {
   return events.filter((event) => event.placeId === placeId)
 }
 
+export function getHomePlaces(): Place[] {
+  const sourceNameSet = new Set(homeSourcePlaceNames)
+  return places.filter((place) => sourceNameSet.has(place.name))
+}
+
 export function getReviewsForTarget(targetType: ReviewSignal['targetType'], targetId: string): ReviewSignal[] {
   return reviewSignals.filter((review) => review.targetType === targetType && review.targetId === targetId && review.status === 'approved')
 }
 
 export function filterPlaces(filters: SearchFilters): Place[] {
+  return filterPlaceList(getHomePlaces(), filters)
+}
+
+export function filterPlaceList(placeList: Place[], filters: SearchFilters): Place[] {
   const keyword = filters.keyword.trim().toLowerCase()
 
-  return places.filter((place) => {
+  return placeList.filter((place) => {
     const placeEvents = getEventsByPlace(place.id)
     const matchesDistrict = filters.district === '全部' || place.district === filters.district
     const matchesType = filters.type === 'all' || place.type === filters.type
@@ -44,6 +53,14 @@ export function filterPlaces(filters: SearchFilters): Place[] {
 
 export function topEvents(limit = 5): Event[] {
   return [...events].sort((a, b) => b.heat - a.heat).slice(0, limit)
+}
+
+export function topHomeEvents(limit = 5): Event[] {
+  const homePlaceIds = new Set(getHomePlaces().map((place) => place.id))
+  return events
+    .filter((event) => homePlaceIds.has(event.placeId))
+    .sort((a, b) => b.heat - a.heat)
+    .slice(0, limit)
 }
 
 export function parseSourceAccountText(text: string): string[] {
