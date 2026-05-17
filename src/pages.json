@@ -1,0 +1,34 @@
+{
+  "pages": [
+    {
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "深圳周末去哪玩"
+      }
+    },
+    {
+      "path": "pages/place/index",
+      "style": {
+        "navigationBarTitleText": "地点详情"
+      }
+    },
+    {
+      "path": "pages/event/index",
+      "style": {
+        "navigationBarTitleText": "活动详情"
+      }
+    },
+    {
+      "path": "pages/admin/index",
+      "style": {
+        "navigationBarTitleText": "内容运营台"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "WeekendSZ",
+    "navigationBarBackgroundColor": "#f6f0e6",
+    "backgroundColor": "#f6f0e6"
+  }
+}

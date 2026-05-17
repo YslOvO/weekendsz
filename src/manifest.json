@@ -1,0 +1,21 @@
+{
+  "name": "WeekendSZ",
+  "appid": "__UNI__WEEKENDSZ",
+  "description": "深圳周末去哪玩",
+  "versionName": "0.1.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "h5": {
+    "title": "WeekendSZ 深圳周末去哪玩",
+    "router": {
+      "mode": "hash"
+    }
+  },
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": true
+    },
+    "usingComponents": true
+  }
+}

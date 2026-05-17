@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WeekendSZ 静态预览</title>
+    <style>
+      body {
+        margin: 0;
+        background: #f6f0e6;
+        color: #24323a;
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      }
+      .page {
+        min-height: 100vh;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+      .topbar, .layout {
+        max-width: 1240px;
+        margin: 0 auto;
+      }
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: end;
+        margin-bottom: 16px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 34px;
+        line-height: 1.08;
+      }
+      .subtitle {
+        margin-top: 6px;
+        color: #66746f;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        gap: 20px;
+      }
+      .map {
+        position: relative;
+        min-height: 680px;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #dce7df;
+        box-shadow: 0 22px 50px rgba(40, 52, 50, 0.16);
+      }
+      .map img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .pin {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+      .dot {
+        width: 13px;
+        height: 13px;
+        border: 3px solid #fff;
+        border-radius: 99px;
+        background: #e6412d;
+        box-shadow: 0 3px 10px rgba(70, 20, 10, 0.35);
+      }
+      .pin.active .dot {
+        width: 18px;
+        height: 18px;
+        background: #15a36d;
+      }
+      .label {
+        max-width: 96px;
+        padding: 4px 7px;
+        border-radius: 7px;
+        background: rgba(255, 255, 255, 0.88);
+        color: #26343b;
+        font-size: 12px;
+        line-height: 1.2;
+      }
+      .panel {
+        display: grid;
+        gap: 14px;
+      }
+      .card {
+        padding: 16px;
+        border: 1px solid rgba(36, 50, 58, 0.1);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 16px 36px rgba(50, 58, 50, 0.08);
+      }
+      .eyebrow {
+        color: #d33420;
+        font-size: 12px;
+        font-weight: 800;
+      }
+      h2 {
+        margin: 8px 0;
+        font-size: 24px;
+      }
+      .muted {
+        color: #60706a;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .chip {
+        padding: 6px 10px;
+        border-radius: 7px;
+        background: #eaf4f0;
+        color: #276050;
+        font-size: 12px;
+      }
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .metric {
+        padding: 10px;
+        border-radius: 8px;
+        background: #f5f2eb;
+      }
+      .metric strong {
+        display: block;
+        font-size: 20px;
+      }
+      .event {
+        margin-top: 10px;
+        padding: 12px;
+        border-radius: 8px;
+        background: #fff;
+      }
+      .event-title {
+        font-weight: 800;
+      }
+      .button {
+        height: 40px;
+        padding: 0 16px;
+        border: 0;
+        border-radius: 8px;
+        background: #e6412d;
+        color: #fff;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .ghost {
+        background: #fff;
+        color: #24323a;
+        border: 1px solid rgba(36, 50, 58, 0.12);
+      }
+      @media (max-width: 920px) {
+        .page { padding: 14px; }
+        .layout { grid-template-columns: 1fr; }
+        .map { min-height: 520px; }
+        .topbar { align-items: start; flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <div>
+          <h1>WeekendSZ</h1>
+          <div class="subtitle">深圳周末去哪玩 · 静态预览</div>
+        </div>
+        <button class="button ghost" id="admin">运营台演示</button>
+      </header>
+      <section class="layout">
+        <div class="map" id="map">
+          <img src="../src/assets/map/shenzhen-handdrawn-map.png" alt="手绘深圳地图" />
+        </div>
+        <aside class="panel">
+          <div class="card" id="spot"></div>
+          <div class="card">
+            <span class="eyebrow">本周热门</span>
+            <div class="event">
+              <div class="event-title">湾区日落音乐市集</div>
+              <div class="muted">欢乐港湾 · 即将开始 · 免费入场</div>
+            </div>
+            <div class="event">
+              <div class="event-title">世界之窗夜场奇遇季</div>
+              <div class="muted">世界之窗 · 进行中 · 门票制</div>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+    <script>
+      const places = [
+        { id: 'mixc-world', name: '深圳万象天地', district: '南山', type: '商场', x: 36, y: 47, heat: 96, eventCount: 3, tags: ['逛街', '展览', '拍照'], summary: '潮流品牌、街区展览和周末快闪密度高，适合情侣逛展拍照。' },
+        { id: 'coco-park', name: '福田星河COCO Park', district: '福田', type: '商场', x: 55, y: 51, heat: 91, eventCount: 2, tags: ['夜生活', '市集', '餐饮'], summary: '福田核心夜生活和餐饮集合地，周末市集与品牌活动常驻。' },
+        { id: 'happy-harbor', name: '欢乐港湾', district: '宝安', type: '滨海', x: 27, y: 44, heat: 93, eventCount: 3, tags: ['滨海', '夜景', '亲子'], summary: '滨海公园、摩天轮和夜景组合，适合傍晚散步与亲子出片。' },
+        { id: 'sea-world', name: '蛇口海上世界', district: '南山', type: '景区', x: 34, y: 59, heat: 88, eventCount: 2, tags: ['海边', '艺术', '餐酒馆'], summary: '海边街区、餐酒馆和艺术展览聚集，适合周末城市轻旅行。' },
+        { id: 'window-world', name: '世界之窗', district: '南山', type: '景区', x: 42, y: 47, heat: 90, eventCount: 2, tags: ['景区', '演艺', '亲子'], summary: '夜场演艺、主题节庆和亲子路线成熟，适合半日游。' },
+        { id: 'dameisha', name: '大梅沙海滨公园', district: '盐田', type: '滨海', x: 84, y: 58, heat: 92, eventCount: 2, tags: ['海边', '亲子', '预约'], summary: '深圳经典海边目的地，适合晴天看海、亲子玩沙和轻度徒步。' },
+        { id: 'gankeng', name: '甘坑古镇', district: '龙岗', type: '景区', x: 70, y: 34, heat: 81, eventCount: 2, tags: ['古镇', '夜景', '亲子'], summary: '古风街区、夜景和亲子项目组合，适合拍照和轻游。' }
+      ]
+      const map = document.querySelector('#map')
+      const spot = document.querySelector('#spot')
+      let selected = places[0]
+
+      function renderSpot() {
+        spot.innerHTML = `
+          <span class="eyebrow">${selected.district} · ${selected.type}</span>
+          <h2>${selected.name}</h2>
+          <div class="muted">${selected.summary}</div>
+          <div class="metrics">
+            <div class="metric"><strong>${selected.heat}</strong><span>热度</span></div>
+            <div class="metric"><strong>${selected.eventCount}</strong><span>活动</span></div>
+            <div class="metric"><strong>${selected.tags.length}</strong><span>标签</span></div>
+          </div>
+          <div class="chips">${selected.tags.map((tag) => `<span class="chip">${tag}</span>`).join('')}</div>
+          <button class="button" style="margin-top:16px" onclick="alert('正式版进入地点详情页：${selected.name}')">查看详情</button>
+        `
+      }
+
+      function renderPins() {
+        places.forEach((place) => {
+          const button = document.createElement('button')
+          button.className = `pin ${place.id === selected.id ? 'active' : ''}`
+          button.style.left = `${place.x}%`
+          button.style.top = `${place.y}%`
+          button.innerHTML = `<span class="dot"></span><span class="label">${place.name}</span>`
+          button.onclick = () => {
+            selected = place
+            document.querySelectorAll('.pin').forEach((pin) => pin.remove())
+            renderPins()
+            renderSpot()
+          }
+          map.appendChild(button)
+        })
+      }
+
+      document.querySelector('#admin').onclick = () => {
+        alert('运营台：导入一行一个公众号/地点名称，生成采集源，采集结果进入审核池。正式版见 src/pages/admin/index.vue')
+      }
+
+      renderPins()
+      renderSpot()
+    </script>
+  </body>
+</html>
